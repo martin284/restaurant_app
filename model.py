@@ -14,12 +14,10 @@ class Restaurant:
                 food_item = self.menu.menu[i]
                 self.order_list[table_nr].append(food_item)
 
-class Order:
-    def __init__(self):
-        self.food_items = []
-
-    def add_food_item(self, food_item):
-        self.food_items.append(food_item)
+    def print_orders(self, table_nr):
+        print('Table-Number:', table_nr)
+        for i in range(len(self.order_list[table_nr])):
+            print(self.order_list[table_nr][i].name)
 
 class Menu():
     def __init__(self):

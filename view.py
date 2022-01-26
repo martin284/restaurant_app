@@ -21,7 +21,7 @@ class Table(tk.Frame):
         order_btn = OrderButton(self, restaurant, table_nr)
         order_btn.grid(row=1, column=0, padx=self.ext_padding_x,
         pady=self.ext_padding_y)
-        bill_btn = ShowBillButton(self)
+        bill_btn = ShowBillButton(self, restaurant, table_nr)
         bill_btn.grid(row=2,column=0, padx=self.ext_padding_x,
         pady=self.ext_padding_y)
 
@@ -67,9 +67,21 @@ class OrderButton(tk.Button):
         super().__init__(master, text=self.text, command=show_menu)
 
 class ShowBillButton(tk.Button):
-    def __init__(self, master):
+    def __init__(self, master, restaurant, table_nr):
         self.text = "Show Bill"
-        super().__init__(master, text=self.text)
+        def show_bill():
+            Bill(self)
+            restaurant.print_orders(table_nr)
+        super().__init__(master, text=self.text, command=show_bill)
+
+class Bill(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__(master)
+        self.title('Bill')
+        bill = tk.Label(self, text='The bill should appear here.')
+        bill.grid()
+
+
 
 if __name__ == '__main__':
     App()
