@@ -1,6 +1,19 @@
 import csv
 import view
 
+class Restaurant:
+    def __init__(self):
+        self.number_of_tables = 3
+        self.order_list = [ [] for _ in range(self.number_of_tables) ]
+        self.menu = Menu()
+
+    def add_orders(self, table_nr, orders):
+        # get foot item from orders
+        for i in range(len(orders)):
+            if orders[i] == 1:
+                food_item = self.menu.menu[i]
+                self.order_list[table_nr].append(food_item)
+
 class Order:
     def __init__(self):
         self.food_items = []
@@ -35,6 +48,6 @@ class FoodItem:
         self.special_wishes.append(wish)
 
 if __name__ == '__main__':
-    menu = Menu()
+    restaurant = Restaurant()
     # start app
-    view.App(menu.menu)
+    view.App(restaurant)
