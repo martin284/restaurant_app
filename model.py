@@ -1,4 +1,5 @@
 import csv
+import view
 
 class Order:
     def __init__(self):
@@ -32,3 +33,8 @@ class FoodItem:
 
     def add_special_wishes(self, wish):
         self.special_wishes.append(wish)
+
+if __name__ == '__main__':
+    menu = Menu()
+    # start app
+    view.App(menu.menu)
